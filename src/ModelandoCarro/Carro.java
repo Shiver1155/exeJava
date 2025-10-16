@@ -1,3 +1,5 @@
+package ModelandoCarro;
+
 class Carro{
     public String marca;
     public String modelo;
@@ -16,7 +18,7 @@ class Carro{
     }
     public void desligado() {
         this.velocidadeAtual = 0;
-        System.out.println("O Carro esta deligado");
+        System.out.println("O ModelandoCarro.Carro esta deligado");
     }
     public void acelerar(int aumento) {
         this.velocidadeAtual += aumento;
