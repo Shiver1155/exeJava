@@ -11,6 +11,8 @@ class BancoTeste{
         ContaPoupanca cp = new ContaPoupanca("908-3", "23445-9",
                 "Joao Silva",0.02);
 
+
+
         cc.depositar(1000);
         cp.depositar(1000);
 
@@ -28,6 +30,7 @@ class BancoTeste{
             else if(a instanceof ContaCorrente) {
                 System.out.println("Conta Corrente");
             }
+            a.cobrarTaxaMensal();
             System.out.println("Agencia: " + a.agencia);
             System.out.println("Numero: " + a.numero);
             System.out.println("Titular: " + a.titular);

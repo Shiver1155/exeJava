@@ -1,6 +1,6 @@
 package SistemaBancárioHeranca;
 
-class Conta{
+public abstract class Conta{
     protected String agencia;
     protected String numero;
     protected String titular;
@@ -44,4 +44,5 @@ class Conta{
             return true;
         }
     }
+    public abstract void cobrarTaxaMensal();
 }

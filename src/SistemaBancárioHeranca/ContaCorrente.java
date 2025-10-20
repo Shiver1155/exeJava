@@ -24,4 +24,13 @@ class ContaCorrente extends Conta{
             System.out.println("Saldo insuficiente.");
             return false;}
     }
+    public void cobrarTaxaMensal(){
+        double taxa = 15.00;
+        if(this.saldo + this.limiteChequeEspecial >= taxa){
+            this.saldo -= taxa;
+            System.out.println("Taxa mensal de R$" + taxa + " cobrada da conta " + this.numero);
+        }else {
+            System.out.println("Saldo insuficiente para cobrar taxa mensal na conta " + this.numero);
+        }
+    }
 }
