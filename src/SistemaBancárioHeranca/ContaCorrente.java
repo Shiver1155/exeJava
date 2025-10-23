@@ -1,8 +1,9 @@
 package SistemaBancárioHeranca;
 
 
+import Investimento.Investivel;
 
-class ContaCorrente extends Conta{
+class ContaCorrente extends Conta implements Investivel {
     private double limiteChequeEspecial;
     public ContaCorrente(String agencia, String numero, String titular, double limiteChequeEspecial){
         super(agencia,numero, titular);
@@ -10,19 +11,19 @@ class ContaCorrente extends Conta{
     }
 
     @Override
-    public boolean sacar(double valor) {
+    public void sacar(double valor) throws SaldoInsuficienteException {
         if(valor <= 0 ){
             System.out.println("Valor invalido para saque");
-            return false;
+            return;
         }
-        if (valor > 0 && (this.saldo + limiteChequeEspecial) >= valor){
-            this.saldo -= valor;
-            System.out.println("Saque da conta limite " + "Saldo "
-                    + saldo + " Cheque Especial " + this.limiteChequeEspecial);
-            return true;
-        }else {
-            System.out.println("Saldo insuficiente.");
-            return false;}
+        if ((this.saldo + limiteChequeEspecial) < valor){
+            throw new SaldoInsuficienteException("Saldo insuficiente com cheque especial");
+        }
+
+        this.saldo -= valor;
+        System.out.println("Saque da conta limite " + "Saldo "
+                + saldo + " Cheque Especial " + this.limiteChequeEspecial);
+
     }
     @Override
     public void cobrarTaxaMensal(){
@@ -33,5 +34,19 @@ class ContaCorrente extends Conta{
         }else {
             System.out.println("Saldo insuficiente para cobrar taxa mensal na conta " + this.numero);
         }
+    }@Override
+    public void investir(double valor) throws SaldoInsuficienteException {
+        if (valor <= 0) {
+            System.out.println("Valor invalido para investimento.");
+            return;
+        }
+        if (this.saldo <= valor) {
+            throw new SaldoInsuficienteException("Saldo insuficiente para investimento");
+        }
+
+        this.saldo -= valor;
+        System.out.println("Investimento de R$" + valor +
+                " realizado com sucesso a partir ds conta " + this.numero);
+
     }
 }

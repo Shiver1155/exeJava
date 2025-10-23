@@ -30,19 +30,18 @@ public abstract class Conta{
         }else {
             System.out.println("Valor nao pode ser negativo ");
         }
-    }public boolean sacar(double valor){
+    }public void sacar(double valor) throws SaldoInsuficienteException{
         if(valor <= 0){
             System.out.println("Valor nao pode ser negativo");
-            return false;
-        }else if(this.saldo < valor){
-            System.out.println("Saldo insuficiente");
-            return false;
+            return;
+
+        }if(this.saldo < valor){
+            throw new SaldoInsuficienteException("Saldo insuficiente. Saldo: "
+                    + this.saldo + " saque"+ this.saldo);
         }
-        else {
-            this.saldo -= valor;
-            System.out.println("Valor de R$" + valor + " foi sacado");
-            return true;
-        }
+        this.saldo -= valor;
+        System.out.println("Valor de R$" + valor + " foi sacado");
+
     }
     public abstract void cobrarTaxaMensal();
 }

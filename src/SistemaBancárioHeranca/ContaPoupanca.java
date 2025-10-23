@@ -1,6 +1,8 @@
 package SistemaBancárioHeranca;
 
-class ContaPoupanca extends Conta{
+import Investimento.Investivel;
+
+class ContaPoupanca extends Conta {
     public double taxaJuros;
     public ContaPoupanca(String agencia, String numero, String titular, double taxaJuros){
         super(agencia, numero, titular);
@@ -14,4 +16,5 @@ class ContaPoupanca extends Conta{
     public void cobrarTaxaMensal(){
         System.out.println("Conta poupanca isenta de taxa mensal. ");
     }
+
 }
